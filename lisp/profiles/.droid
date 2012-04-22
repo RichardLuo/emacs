@@ -1,0 +1,168 @@
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+## export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_01
+export CLASSPATH=$JAVA_HOME/jre/lib:$CLASSPATH
+
+export ANDROID_JAVA_HOME=$JAVA_HOME
+
+export PATH=${JAVA_HOME}/bin:${PATH}
+
+# for rx-wen's agdb.py
+# export ANDROID_SRC_ROOT=/home/richard/gingerbread
+# export ndk_gdb_path=/home/richard/gingerbread/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin
+# export PATH=${ndk_gdb_path}:${PATH}
+
+
+# getent will cause bash login error
+# S5PC100_GCC_PATH=/tc/toolchain/4.2.2-eabi/usr/bin
+# export PATH=$S5PC100_GCC_PATH:$PATH
+
+# $1 filename: like AndroidManifest.xml
+function GetDir
+{
+    local TOPFILE=$1
+    if [ -n "$TOP" -a -f "$TOP/$TOPFILE" ] ; then
+        echo $TOP
+    else
+        if [ -f $TOPFILE ] ; then
+            echo $PWD
+        else
+            # We redirect cd to /dev/null in case it's aliased to
+            # a command that prints something as a side-effect
+            # (like pushd)
+            local HERE=$PWD
+            T=
+            while [ \( ! \( -f $TOPFILE \) \) -a \( $PWD != "/" \) ]; do
+                cd .. > /dev/null
+                T=$PWD
+            done
+            cd $HERE > /dev/null
+            if [ -f "$T/$TOPFILE" ]; then
+                echo $T
+            fi
+        fi
+    fi
+}
+
+
+function cdAndroid
+{
+    local TOPFILE=AndroidManifest.xml
+    if [ -n "$TOP" -a -f "$TOP/$TOPFILE" ] ; then
+        echo $TOP
+    else
+        if [ -f $TOPFILE ] ; then
+            echo $PWD
+        else
+            # We redirect cd to /dev/null in case it's aliased to
+            # a command that prints something as a side-effect
+            # (like pushd)
+            local HERE=$PWD
+            T=
+            while [ \( ! \( -f $TOPFILE \) \) -a \( $PWD != "/" \) ]; do
+                cd .. > /dev/null
+                T=$PWD
+            done
+            cd $HERE > /dev/null
+            if [ -f "$T/$TOPFILE" ]; then
+                echo $T
+                cd $T
+            fi
+        fi
+    fi
+}
+
+function Gettop
+{
+    local TOPFILE=build/core/envsetup.mk
+    if [ -n "$TOP" -a -f "$TOP/$TOPFILE" ] ; then
+        echo $TOP
+    else
+        if [ -f $TOPFILE ] ; then
+            echo $PWD
+        else
+            # We redirect cd to /dev/null in case it's aliased to
+            # a command that prints something as a side-effect
+            # (like pushd)
+            local HERE=$PWD
+            T=
+            while [ \( ! \( -f $TOPFILE \) \) -a \( $PWD != "/" \) ]; do
+                cd .. > /dev/null
+                T=$PWD
+            done
+            cd $HERE > /dev/null
+            if [ -f "$T/$TOPFILE" ]; then
+                echo $T
+            fi
+        fi
+    fi
+}
+
+function Croot()
+{
+    T=$(Gettop)
+    if [ "$T" ]; then
+        cd $(Gettop)
+    else
+        echo "Couldn't locate the top of the tree.  Try setting TOP."
+    fi
+}
+
+
+
+function gggetEnv()
+{
+    T=$(Gettop)
+    if [ "$T" ]; then
+        cd $(Gettop)/build
+        source envsetup.sh
+        cd -
+    else
+        echo "Couldn't locate the top of the tree.  Try setting TOP."
+    fi
+}
+
+function get_valid_toolchain_prefix()
+{
+    local T=$(Gettop)
+
+
+    if [ -z $T ]; then
+       T=${HOME}/gingerbread
+    fi
+
+    local toolchain_versions="4.4.3 4.4.0"
+
+    for v in ${toolchain_versions}; do
+        local tc_bin_dir=$T/prebuilt/linux-x86/toolchain/arm-eabi-$v/bin/
+        if [ -d $tc_bin_dir ]; then
+            echo "${tc_bin_dir}arm-eabi-"
+            return 0
+        fi
+    done
+
+    echo "could not find the toolchain"
+    exit 100
+}
+
+function Dcc()
+{
+    local tool=$(get_valid_toolchain_prefix)"$1"
+
+    if [ ! -x $tool ]; then
+        echo "can not execute $tool"
+        exit 100
+    else
+        shift
+        $tool $@    
+    fi
+}
+
+function get_ndk_path()
+{
+    echo $PATH|sed -s -e 's/.*:\(.*ndk-r[0-9a-z]*\):.*/\1/'
+}
+
+function goNDK()
+{
+    cd $(get_ndk_path)
+}

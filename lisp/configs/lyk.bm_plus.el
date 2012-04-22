@@ -1,0 +1,4 @@
+
+
+(load "bookmark+.el")
+

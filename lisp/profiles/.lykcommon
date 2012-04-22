@@ -1,0 +1,96 @@
+function convert_one_line()
+{
+    local first_arg=`echo "$1"|awk '{print $3}'`
+    local alias_name=`echo "$1"|awk '{print $2}'`
+
+    if [ -d $first_arg ]; then
+        echo "alias $alias_name='cd $first_arg'"
+        return 0
+    fi
+
+    if [ -f $first_arg ]; then
+        local cmd=`echo "$1"|awk '{print $3, $4 $5 $6}'`
+        echo "alias $alias_name='$cmd'"
+        return 0
+    fi
+}
+
+
+
+function convert_eshell_alias_0()
+{
+    local eshell_alias_file=~/.eshell/alias
+    local my_bash_alias=~/.eshell/bash_alias
+
+    rm -f ${my_bash_alias}
+    while read line    
+    do    
+        local one_alias=`convert_one_line "$line"`
+        if [ ! "X$one_alias" = "X" ]; then
+            echo "$one_alias" >> ${my_bash_alias}
+        fi
+    done < ${eshell_alias_file}
+##    cat ${my_bash_alias}
+    source $my_bash_alias
+}
+
+
+# this is faster than convert_eshell_alias_0()
+function convert_eshell_alias()
+{
+    local eshell_alias_file=~/.eshell/alias
+    local my_bash_alias=~/.eshell/bash_alias
+
+    local result_string=""
+
+    rm -f ${my_bash_alias}
+    while read alias_ name_ arg0_ arg1_ arg2_ arg3_
+    do    
+        if [ -d $arg0_ ]; then
+            result_string="alias $name_='cd $arg0_'\n$result_string"
+        elif [ -x $arg0_ ]; then
+            result_string="alias $name_='$arg0_ $arg1_ $arg2_ $arg3_'\n$result_string"
+        fi
+    done < ${eshell_alias_file}
+
+    if [ ! "X$result_string" = "X" ]; then
+        echo -e $result_string>${my_bash_alias}
+    fi
+    source $my_bash_alias
+}
+
+
+
+# function convert_eshell_alias ()
+# {
+#     local eshell_alias_file=~/.eshell/alias
+#     local my_bash_alias=~/.eshell/bash_alias
+#     cat $eshell_alias_file|grep -E "alias [a-zA-Z0-9.]+ \/"|sed -e "s, \(\/.*\),='cd \1'," > $my_bash_alias
+#     source $my_bash_alias
+# }
+
+unique_path ()
+{
+    PATH=`echo $PATH| sed -e 's,:,\n,g'|sort|uniq| xargs|sed -s 's, ,:,g'`
+}
+
+append_new_path ()
+{
+    if [ -d $1 ] ; then
+        PATH=$1:"${PATH}"
+    else
+        echo "warnning: invalid input dir:$1"
+    fi
+}
+
+append_new_lib_path ()
+{
+    if [ -d $1 ] ; then
+        export LD_LIBRARY_PATH=$1:"${LD_LIBRARY_PATH}"
+    fi
+}
+
+emc_grep ()
+{
+    find -iregex '.*\.\(cpp\|c\|s\|sh\|java\|xml\|h\|hpp\|inl\)$' -print0 | xargs -0e grep -nHE "$1"
+}
