@@ -6,7 +6,7 @@
 
 ;;	  (add-to-list 'load-path "~/.libs.emacs/color_theme/")
 	  (require 'color-theme)
-      (color-theme-initialize)
+      ;; (color-theme-initialize)
  	  (color-theme-blue-mood)
 
 	  (auto-image-file-mode)
