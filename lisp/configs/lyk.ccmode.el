@@ -50,20 +50,20 @@
 
 ;;================================================================
 ;;set c & c++ style as stroustrup style
-(add-hook 'c++-mode-hook
-		  '(lambda()
-			 (c-set-style "stroustrup")))
+;; (add-hook 'c++-mode-hook
+;; 		  '(lambda()
+;; 			 (c-set-style "stroustrup")))
 
-(add-hook 'c-mode-hook
-		  '(lambda ()
-			 (c-set-style "stroustrup")))
+;; (add-hook 'c-mode-hook
+;; 		  '(lambda ()
+;; 			 (c-set-style "stroustrup")))
 
-(add-hook 'java-mode-hook
-		  '(lambda ()
-			 (c-set-style "stroustrup")))
+;; (add-hook 'java-mode-hook
+;; 		  '(lambda ()
+;; 			 (c-set-style "stroustrup")))
 
 
-;; (load "google-c-style.el" nil t t)
-;; (add-hook 'c-mode-common-hook 'google-set-c-style)
+(load "google-c-style.el" nil t t)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
 
 
