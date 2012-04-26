@@ -1,0 +1,20 @@
+/******************************************************************
+ * @file   (>>>FILE<<<)
+ * @author (>>>USER_NAME<<<)
+ * @date   (>>>VC_DATE<<<)
+ * 
+ * @brief  
+ * 
+ ****************************************************************** 
+ */
+
+import android.util.Log;
+import android.content.Context;
+import android.os.RemoteException;
+import android.os.DeadObjectException;
+import android.os.DeadObjectException;
+
+public class (>>>FILE_SANS<<<) {
+    private static final String TAG = "(>>>FILE_SANS<<<)";
+    (>>>POINT<<<)
+}
