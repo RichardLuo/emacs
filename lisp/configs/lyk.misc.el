@@ -131,25 +131,51 @@ occurence of CHAR."
 
 
 ;;-------------------------------------------------------------------------
-(global-set-key [(control ?\.)] 'ska-point-to-register)
-(global-set-key [(control ?\,)] 'ska-jump-to-register)
 (defun ska-point-to-register()
   "Store cursorposition _fast_ in a register. 
 Use ska-jump-to-register to jump back to the stored 
 position."
   (interactive)
   (setq zmacs-region-stays t)
-  (point-to-register 8))
+  (point-to-register 8)
+  (message "Position saved:%s" (get-register 8))
+  )
+
+(defun ska-jump-to-mark()
+  "Jump the the previous marked point and save the current
+position to register 7"
+  (interactive)
+  (point-to-register 7)
+  (jump-to-register 8)
+  (message "called ska-jump-to-mark");
+)
+
+(defun ska-jump-back-from-mark()
+  "Jump back from the marked position"
+  (interactive)
+  (jump-to-register 7)
+  (message "called ska-jump-back-from-mark");
+)
 
 (defun ska-jump-to-register()
   "Switches between current cursorposition and position
 that was stored with ska-point-to-register."
   (interactive)
   (setq zmacs-region-stays t)
-  (let ((tmp (point-marker)))
-        (jump-to-register 8)
-        (set-register 8 tmp)))
-
+  (let (
+        (old (get-register 8))
+        (cur (point-marker))
+        )
+    (message "==== old is:%s" old)
+    (message "1 cur is:[%s] old is:[%s]" cur old)
+    (if (not (equal cur old))
+        (ska-jump-to-mark)
+        (ska-jump-back-from-mark)
+      )
+    )
+  )
+(global-set-key [(control ?\.)] 'ska-point-to-register)
+(global-set-key [(control ?\,)] 'ska-jump-to-register)
 
 ;;================================================================
 (require 'ibuffer)
