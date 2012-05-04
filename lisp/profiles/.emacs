@@ -98,3 +98,7 @@
 
 (defalias 'perl-mode 'cperl-mode)
 
+(defun my-makefile-mode-hook ()
+  (define-key makefile-mode-map "\M-n" nil)
+  (define-key makefile-mode-map "\M-p" nil))
+(add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
