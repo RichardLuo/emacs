@@ -1,7 +1,7 @@
 (require 'magit)
 
 ;; (require 'git)
-;; (global-set-key "\C-xgs" 'git-status)
+(global-set-key "\C-xgs" 'magit-status)
 
 ;; Disable Git, there is a bug that make it very slowly to open a file
 ;; from the indexed cscope buffer, it's very headche for me, I'd
