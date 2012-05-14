@@ -8,10 +8,11 @@
  ****************************************************************** 
  */
 
+#define LOG_TAG "(>>>FILE_SANS<<<)"
+
 #include "(>>>FILE_SANS<<<).h"
 
 //#define LOG_NDEBUG 0
-#define LOG_TAG "(>>>FILE_SANS<<<)"
 #include <utils/Log.h>
 // #include <utils/Errors.h>
 // #include <cutils/compiler.h>
