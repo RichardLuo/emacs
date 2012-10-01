@@ -7,9 +7,10 @@
             (normal-top-level-add-subdirs-to-load-path)))
          load-path)))
 
+(load "lyk.misc.el")
+
 (load "lyk.git.el")
 (load "lyk.gud.el")
-(load "lyk.misc.el")
 (load "lyk.ido.el")
 (load "lyk.hooks.el")
 (load "lyk.x11.el")
@@ -30,6 +31,7 @@
 ;; (load "lyk.company.el")
 
 (load "lyk.erlang.el")
+(load "lyk.yasnippet.el")
 ;; (load "lyk.muse.el")
 ;; (load "lyk.gnuserv.el")
 

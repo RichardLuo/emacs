@@ -145,6 +145,23 @@
      ( "/data/android-ics/libcore" )
      )
 
+   ( "^/home/richard/msrc/droid_build_systems/try_droid_build"
+     ( "/home/richard/msrc/droid_build_systems/try_droid_build/frameworks" )
+     ( "/home/richard/msrc/droid_build_systems/try_droid_build/bionic" )
+     ( "/home/richard/msrc/droid_build_systems/try_droid_build/build" )
+     ( "/home/richard/msrc/droid_build_systems/try_droid_build/system" )
+     ( "/home/richard/msrc/droid_build_systems/try_droid_build/external" )
+     )
+
+   ( "^/media/linux/ddbs"
+     ( "/media/linux/ddbs/frameworks" )
+     ( "/media/linux/ddbs/bionic" )
+     ( "/media/linux/ddbs/build" )
+     ( "/media/linux/ddbs/system" )
+     ( "/media/linux/ddbs/external" )
+     )
+
+
    ( "^/home/richard/msrc/cyanmod"
      ( "/home/richard/msrc/cyanmod/frameworks" )
      ( "/home/richard/msrc/cyanmod/build" )
@@ -174,15 +191,15 @@
      ;;     ( "/home/richard/msrc/kernel/droidKernel" )
      )
 
-   ( "^/home/richard/awareness"
-     ( "/home/richard/awareness/frameworks" )
-     ( "/home/richard/awareness/build" )
-     ( "/home/richard/awareness/system" )
-     ( "/home/richard/awareness/external" )
-     ( "/home/richard/awareness/hardware" )
-     ( "/home/richard/awareness/bionic" )
-     ( "/home/richard/awareness/sdk" )
-     ( "/home/richard/awareness/device" )
+   ( "^/home/richard/msrc/droid_build_systems/awareness"
+     ( "/home/richard/msrc/droid_build_systems/awareness/frameworks" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/build" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/system" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/external" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/hardware" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/bionic" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/sdk" )
+     ( "/home/richard/msrc/droid_build_systems/awareness/device" )
      )
 
    ( "^/home/richard/gdroid"
@@ -234,6 +251,12 @@
      ( "/home/richard/Gbread2/frameworks" )
      )
 
+   ( "^/home/richard/msrc/Cnxt92755/N265/output/build/linux-2.6.32"
+     ( "/home/richard/msrc/Cnxt92755/N265/target" )
+     ( "/home/richard/msrc/Cnxt92755/N265/output/build/linux-2.6.32" )
+     )
+
+
    ( "^/home/richard/msrc/zstack"
      ( "/home/richard/msrc/zstack/Components" )
      ( "/home/richard/msrc/zstack/Projects/zstack" )
@@ -244,6 +267,13 @@
      ( "/home/richard/msrc/std_buildroot/buildroot/output/build" )
      ( "/data/git_h7000/apps" )
      )
+
+   ( "^/media/linux/Nor4/output/build/linux-2.6.32"
+     ( "/media/linux/Nor4/output/build/linux-2.6.32" )
+     ( "/media/linux/Nor4/target" )
+     )
+
+
 
  )
  )

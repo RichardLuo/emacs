@@ -1,18 +1,16 @@
-(defconst lyk-lib-path "/home/richard/.libs.emacs"
-  "All emacs config files collected by Richard Luo")
+(let ((default-directory "~/.emacs.d/lisp/"))
+  (setq load-path
+        (append
+         (let ((load-path (copy-sequence load-path))) ;; Shadow
+           (append 
+            (copy-sequence (normal-top-level-add-to-load-path '(".")))
+            (normal-top-level-add-subdirs-to-load-path)))
+         load-path)))
 
-(defconst lyk-cfg-path "/home/richard/.libs.emacs/lyk.config.d"
-  "All prefrerences of Richard Luo")
-
-(add-to-list 'load-path lyk-lib-path)
-(add-to-list 'load-path lyk-cfg-path)
-
-;; (load "lyk.macro.el")
-(require 'git)
-(global-set-key "\C-xgs" 'git-status)
-
-(load "lyk.gud.el")
 (load "lyk.misc.el")
+
+(load "lyk.git.el")
+(load "lyk.gud.el")
 (load "lyk.ido.el")
 (load "lyk.hooks.el")
 (load "lyk.x11.el")
@@ -33,6 +31,7 @@
 ;; (load "lyk.company.el")
 
 (load "lyk.erlang.el")
+(load "lyk.yasnippet.el")
 ;; (load "lyk.muse.el")
 ;; (load "lyk.gnuserv.el")
 
@@ -54,7 +53,6 @@
 (load "lyk.tempo.el")
 (load "lyk.ccmode.el")
 (load "lyk.eshell.el")
-
 ;; (load "lyk.lua.el")
 ;; (load "lyk.media_wiki.el")
 
@@ -73,14 +71,6 @@
 ;; (load "muse-autoloads.el"))
 
 
-;; Disable Git, there is a bug that make it very slowly to open a file
-;; from the indexed cscope buffer, it's very headche for me, I'd
-;; rather sacrifice the vc of Git for cscope is too important for
-;; me...
-;; 2011-06-24 currently I need this feature
-;; (setq vc-handled-backends
-;;       (delete 'Git vc-handled-backends))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; for chrome browser
 ;; (require 'edit-server)
@@ -90,20 +80,27 @@
 (modify-syntax-entry ?\_ "w")
 (setq compilation-scroll-output t)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(bm-buffer-persistence t)
  '(bm-highlight-style (quote bm-highlight-only-fringe))
  '(bm-repository-size 100000)
  '(bm-restore-repository-on-load t t)
  '(mediawiki-site-alist (quote (("X-Live" "https://github.com/RichardLuo/X-Live/wiki" "cdominant7@gmail.com" "" "Home")))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;; (require 'protobuf-mode)
+
+(defalias 'perl-mode 'cperl-mode)
+
+(defun my-makefile-mode-hook ()
+  (define-key makefile-mode-map "\M-n" nil)
+  (define-key makefile-mode-map "\M-p" nil))
+(add-hook 'makefile-mode-hook 'my-makefile-mode-hook)

@@ -1,12 +1,12 @@
 ;; (setq eshell-prompt-function
 ;;       (lambda ()
-;;         (concat "[" (getenv "USER") 
-;;                 "@eshell]"
+;;         (concat (getenv "USER@ ") 
+;;                 (eshell/pwd)
 ;; ;;                "@" (getenv "HOSTNAME") "] "
 ;; ;;                "(" (format-time-string "%a %b %e %l:%M %p") ") "
 ;; ;;                (eshell/pwd)
 ;; ;;                (if (= (user-uid) 0) "\n # " "\n $ "))))
-;;                 (if (= (user-uid) 0) "# " "$ "))))
+;;                 (if (= (user-uid) 0) " # " " $ "))))
 
 (defun eshell-maybe-bol ()
   (interactive)

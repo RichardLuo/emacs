@@ -41,7 +41,7 @@
   (define-key c-mode-base-map [(return)] 'newline-and-indent)
   (define-key c-mode-base-map [(f5)] 'compile)
   (define-key c-mode-base-map [(meta \`)] 'c-indent-command)
-  (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
+  ;; (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
   (define-key c-mode-base-map [(control c) (control d)] 'c-down-conditional-with-else)
   )
 

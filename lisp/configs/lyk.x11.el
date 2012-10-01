@@ -8,9 +8,8 @@
 	  (require 'color-theme)
       ;; (color-theme-initialize)
  	  (color-theme-blue-mood)
-
+      (setq frame-title-format '("" "emacs\t\t%f" emacs))
 	  (auto-image-file-mode)
-	  (setq frame-title-format "%f")
 
 ;;;       (create-fontset-from-fontset-spec
 ;;;        (concat

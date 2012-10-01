@@ -344,10 +344,10 @@ that was stored with ska-point-to-register."
 ;; ;;-------------------------------------------------------------------------
 ;; (require 'tabbar)
 ;; (tabbar-mode)
-;; (define-key global-map [(s-up)] 'tabbar-backward-group)
-;; (define-key global-map [(s-down)] 'tabbar-forward-group)
-;; (define-key global-map [(s-left)] 'tabbar-backward)
-;; (define-key global-map [(s-right)] 'tabbar-forward)
+;; (define-key global-map [(H-up)] 'tabbar-backward-group)
+;; (define-key global-map [(H-down)] 'tabbar-forward-group)
+;; (define-key global-map [(H-left)] 'tabbar-backward)
+;; (define-key global-map [(H-right)] 'tabbar-forward)
 
 ;; ;;-------------------------------------------------------------------------
 ;; (require 'swbuff)
@@ -400,3 +400,6 @@ that was stored with ska-point-to-register."
 (require 'gas-mode)
 
 (setq x-select-enable-clipboard t)
+
+
+(define-key global-map [(control f12)] 'org-agenda-open-link)

@@ -10,7 +10,6 @@ import_file ()
     fi
 }
 
-import_file  ~/.env
 import_file  ~/.lykcommon
 convert_eshell_alias
 
@@ -60,3 +59,28 @@ append_new_path /data/inst/rtptools-1.18/bin/
 export PS1="[\t][\u@\W]\$ "
 
 unique_path
+
+################################################################
+# for github, ubuntu's ssh bug
+export SSH_AUTH_SOCK=0
+
+# for XBuild system
+export PERL5LIB=/etc/perl/CPAN
+export PERL5LIB=/home/richard/bin/:$PERL5LIB
+
+export KKBUILD=$HOME/.kkbuild
+
+export ACE_ROOT=/home/richard/soft/ace/ACE_wrappers
+export ACE_ROOT_X86=/home/richard/soft/ace/ACE_wrappers-5.6-x86
+export ACE_ROOT_ARM=/home/richard/soft/ace/ACE_wrappers-5.6-arm
+
+export TEXINPUTS=${HOME}/texmf/images/Document.Pictures:${HOME}/texmf/images/trunk.docs.material:${TEXINPUTS}
+
+# export LD_LIBRARY_PATH=/home/richard/msrc/opencore/build_config/opencore_dynamic/build/installed_lib/linux:$LD_LIBRARY_PATH
+# export LANG=en_US.UTF-8
+# export LANGUAGE=en_US.UTF-8
+export EDITOR=vim
+
+export HOMESYS_ROOT=/data/git_h7000
+export DOOB_ROOT=/home/richard/doob/trunk
+
