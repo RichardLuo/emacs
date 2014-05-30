@@ -1,12 +1,12 @@
 ;; (setq eshell-prompt-function
 ;;       (lambda ()
-;;         (concat (getenv "USER@ ") 
-;;                 (eshell/pwd)
+;;         (concat "[" (getenv "USER") 
+;;                 "@eshell]"
 ;; ;;                "@" (getenv "HOSTNAME") "] "
 ;; ;;                "(" (format-time-string "%a %b %e %l:%M %p") ") "
 ;; ;;                (eshell/pwd)
 ;; ;;                (if (= (user-uid) 0) "\n # " "\n $ "))))
-;;                 (if (= (user-uid) 0) " # " " $ "))))
+;;                 (if (= (user-uid) 0) "# " "$ "))))
 
 (defun eshell-maybe-bol ()
   (interactive)
@@ -68,6 +68,18 @@
 ;;   (setq grep-find-command
 ;;         "find . -type f -print0 | xargs -0 -e grep -nHIE "))
 
+
+
+(defun file-name-base (&optional filename)
+  "Return the base name of the FILENAME: no directory, no extension.
+FILENAME defaults to `buffer-file-name'."
+  (file-name-sans-extension
+   (file-name-nondirectory (or filename (buffer-file-name)))))
+
+(setq eshell-prompt-function
+      (lambda ()
+        (concat (getenv "USER") "@"
+                (file-name-base (eshell/pwd)) " $ ")))
 
 (global-set-key "\C-z" 'eshell)
 (define-key global-map (kbd "s-z") 'shell)
