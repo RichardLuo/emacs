@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The X-Live Project
+ * Copyright (C) 2013 The X-Live Project
  *
  * @author (>>>USER_NAME<<<), (>>>AUTHOR<<<)
  * 
@@ -14,13 +14,9 @@
 
 //#define LOG_NDEBUG 0
 #include <utils/Log.h>
-// #include <utils/Errors.h>
-// #include <cutils/compiler.h>
-
-#include <sys/types.h>
+#include <utils/Errors.h>
 
 using namespace android;
-
 
 int main (int argc, char *argv[])
 {

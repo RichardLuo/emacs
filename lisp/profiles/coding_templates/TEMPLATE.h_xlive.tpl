@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The X-Live Project
+ * Copyright (C) 2013 The X-Live Project
  *
  * @author (>>>USER_NAME<<<), (>>>AUTHOR<<<)
  * 
@@ -21,6 +21,8 @@ class (>>>FILE_SANS<<<) {
     (>>>FILE_SANS<<<)();
 
     ~(>>>FILE_SANS<<<)();
+
+  private:
 
 };
 

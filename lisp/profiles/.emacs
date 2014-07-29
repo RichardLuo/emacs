@@ -7,8 +7,11 @@
             (normal-top-level-add-subdirs-to-load-path)))
          load-path)))
 
-(load "lyk.misc.el")
+(load "lyk.tempo.el")
+(load "lyk.ccmode.el")
+(load "lyk.eshell.el")
 
+(load "lyk.misc.el")
 (load "lyk.git.el")
 (load "lyk.gud.el")
 (load "lyk.ido.el")
@@ -23,7 +26,7 @@
 ;; (load "lyk.python.el")
 (load "lyk.android.el")
 (load "lyk.coding.el")
-(load "lyk.bm.el")
+;; (load "lyk.bm.el")
 ;; (load "lyk.bm_plus.el")
 (load "lyk.org.el")
 
@@ -50,9 +53,6 @@
 ;;(load "lyk.auctex.el")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "lyk.tempo.el")
-(load "lyk.ccmode.el")
-(load "lyk.eshell.el")
 ;; (load "lyk.lua.el")
 ;; (load "lyk.media_wiki.el")
 
@@ -104,3 +104,19 @@
   (define-key makefile-mode-map "\M-n" nil)
   (define-key makefile-mode-map "\M-p" nil))
 (add-hook 'makefile-mode-hook 'my-makefile-mode-hook)
+
+;; (setq mac-option-modifier 'alt)
+;; (setq mac-command-modifier 'meta)
+;; (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+
+
+(require 'gyp)
+
+
+(add-hook 'java-mode-hook '(lambda () "Treat Java 1.5 @-style annotations as comments."
+                             (setq c-comment-start-regexp 
+                                   "\\(@\\|/\\(/\\|[*][*]?\\)\\)")
+                             (modify-syntax-entry ?@ "< b" 
+                                                  java-mode-syntax-table)))
+
+(load "lyk.scheme.el")

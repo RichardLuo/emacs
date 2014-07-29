@@ -82,17 +82,16 @@
 (global-set-key [S-f1]  'man)
 ;; (global-set-key [f1] 'other-window)
 (global-set-key [f2]    'save-buffer)
-;; (global-set-key [f3]    'save-buffer)
+(global-set-key [f3]    'save-buffer)
 (global-set-key [f4]    'kill-this-buffer)
-(define-key global-map [(H r)]  'rename-buffer)
-(define-key global-map [(H t)]  'revert-buffer)
+(define-key global-map [(s r)]  'rename-buffer)
+(define-key global-map [(s t)]  'revert-buffer)
 ;; (define-key global-map [(s o)]  'other-window)
-
 
 ;;================================================================
 ;;compile key binding.
 (global-set-key [f5]    'compile)
-(global-set-key [f6]    'first-error)
+(global-set-key [f1]    'first-error)
 (global-set-key [f7]    'previous-error)
 (global-set-key [f8]    'next-error)
 

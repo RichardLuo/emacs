@@ -19,7 +19,7 @@
 ;;;         ))
 ;;;       (setq default-frame-alist (append '((font . "fontset-courier")) default-frame-alist))
 
-      (set-default-font "Monaco-12")
+      (set-default-font "Monaco-20")
        (set-fontset-font "fontset-default"
                          'gb18030' ("Microsoft YaHei" . "unicode-bmp"))
 
